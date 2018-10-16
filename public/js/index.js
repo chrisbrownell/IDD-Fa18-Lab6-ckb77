@@ -1,9 +1,27 @@
 // WebSocket connection setup
 var socket = io();
 var questionRecieved = false;
+var video = document.getElementById("fatsVideo");
+var video2 = document.getElementById("catVideo");
+var endVideo = document.getElementById("patVideo");
+var liveVideo = video;
+
+// Get the button
+var btn = document.getElementById("myBtn");
 // keep count of question, used for IF condition.
 var output = document.getElementById('output'); // store id="output" in output variable
 output.innerHTML = "<h1 id=response> </h1>"; // ouput first question
+
+// Pause and play the video, and change the button text
+function muteVideo() {
+    if (liveVideo.muted) {
+        liveVideo.muted=false;
+        btn.innerHTML = "Mute";
+    } else {
+        liveVideo.muted=true;
+        btn.innerHTML = "Unmute";
+    }
+}
 
 function sendMessage() {
   var input = document.getElementById("input").value;
@@ -35,19 +53,46 @@ socket.on('question', function(msg) {
   changeText(msg);
 });
 
-socket.on('changeBG', function(msg) {
-  console.log('Changeing backgroundColor to:', msg);
-  document.body.style.backgroundColor = msg;
+socket.on('changeVid', function() {
+  console.log('Changeing Video');
+  liveVideo.style.zIndex = -2;
+  if(liveVideo == video) {
+    liveVideo = video2;
+  } else {
+    liveVideo = video;
+  }
+  liveVideo.style.zIndex = -1;
 });
 
-socket.on('changeFont', function(msg) {
+socket.on('muteVid', function() {
+    liveVideo.muted = true;
+});
+
+socket.on('unmuteVid', function() {
+    liveVideo.muted = false;
+});
+
+socket.on('toggleMute', function() {
+  if(liveVideo.muted == true) {
+    liveVideo.muted = false;
+  } else {
+    liveVideo.muted = true;
+  }
+});
+
+socket.on('endVid', function() {
+    liveVideo.muted = true;
+    liveVideo.style.zIndex = -2;
+    endVideo.style.zIndex = -1;
+    endVideo.muted = false;
+});
+
+socket.on('muteVid', function(msg) {
   console.log('Changeing Font to:', msg);
   var h1 = document.getElementById('response');
   h1.style.color = 'white';
-
-
-  //document.body.style.backgroundColor = msg;
 });
+
 socket.on('connect', function() { // We let the server know that we are up and running also from the client side;
   socket.emit('loaded');
   document.getElementById("input").style.display = "none"; // Here we wait for the first question to appear

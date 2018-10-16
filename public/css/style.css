@@ -3,15 +3,42 @@
 	padding: 0;
 }
 
+#fatsVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+		z-index: -1;
+}
+
+#catVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+		z-index: -2;
+}
+
+#patVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+		z-index: -2;
+}
+
 body {
-	background-color: #f0db4f;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 h1, p {
 	font-family: sans-serif;
 	text-align: center;
-	color: #323330;
-	font-size:  100px;
+	color: #ffdd59;
+	font-size:  60px;
 }
 
 

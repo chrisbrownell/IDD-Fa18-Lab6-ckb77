@@ -9,6 +9,9 @@ var app = express(); // webapp
 var http = require('http').Server(app); // connects http library to server
 var io = require('socket.io')(http); // connect websocket library to server
 var serverPort = 8000;
+var activeArtist = 'Chats Domino';
+var activeDate = '1948';
+//var video = document.getElementById("myVideo");
 
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
@@ -30,7 +33,7 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
 
-    socket.emit('answer', "Hey, hello I am \"___*-\" a simple chat bot example."); //We start with the introduction;
+    socket.emit('answer', "Greetings, its me, Chats Domino!"); //We start with the introduction;
     setTimeout(timedQuestion, 5000, socket, "What is your name?"); // Wait a moment and respond with a question.
 
   });
@@ -53,40 +56,67 @@ function bot(data, socket, questionNum) {
   if (questionNum == 0) {
     answer = 'Hello ' + input + ' :-)'; // output response
     waitTime = 5000;
-    question = 'How old are you?'; // load next question
+    question = 'Would you like to hear me sing?'; // load next question
   } else if (questionNum == 1) {
-    answer = 'Really, ' + input + ' years old? So that means you were born in: ' + (2018 - parseInt(input)); // output response
-    waitTime = 5000;
-    question = 'Where do you live?'; // load next question
-  } else if (questionNum == 2) {
-    answer = 'Cool! I have never been to ' + input + '.';
-    waitTime = 5000;
-    question = 'Whats your favorite color?'; // load next question
-  } else if (questionNum == 3) {
-    answer = 'Ok, ' + input + ' it is.';
-    socket.emit('changeBG', input.toLowerCase());
-    waitTime = 5000;
-    question = 'Can you still read the font?'; // load next question
-  } else if (questionNum == 4) {
     if (input.toLowerCase() === 'yes' || input === 1) {
-      answer = 'Perfect!';
+      socket.emit('toggleMute');
+      answer = 'Great, I just cranked up the volume!';
       waitTime = 5000;
-      question = 'Whats your favorite place?';
+      question = 'Where are you from?';
     } else if (input.toLowerCase() === 'no' || input === 0) {
-      socket.emit('changeFont', 'white'); /// we really should look up the inverse of what we said befor.
       answer = ''
-      question = 'How about now?';
+      question = 'Too bad. Would you prefer a different genre?';
       waitTime = 0;
-      questionNum--; // Here we go back in the question number this can end up in a loop
+      questionNum = 3; // Go to a new question now
     } else {
-      question = 'Can you still read the font?'; // load next question
-      answer = 'I did not understand you. Could you please answer "yes" or "no"?'
+      question = 'Would you like to hear me sing?'; // load next question
+      answer = 'I did not understand you. Could you please answer "yes" or "no"?';
       questionNum--;
       waitTime = 5000;
     }
-    // load next question
+  } else if (questionNum == 2) {
+    answer = 'Cool! I played a concert in ' + input + ' back in ' + activeDate + '.';
+    waitTime = 5000;
+    question = 'Do you want to keep listening?'; // load next question
+  } else if (questionNum == 3) {
+    if (input.toLowerCase() === 'yes' || input === 1) {
+      answer = 'Great, let\'s jam for a little bit!';
+      waitTime = 20000;
+      question = 'Want to keep listening?';
+      questionNum--;
+    } else if (input.toLowerCase() === 'no' || input === 0) {
+      answer = 'you said no';
+      waitTime = 0;
+      answer = 'I have nothing more to say! Here is my friend Chat Benatar '; // output response
+      socket.emit('endVid');
+      question='';
+    } else {
+      answer = 'you said no';
+      questionNum = 5;
+      waitTime = 5000;
+    }
+  } else if (questionNum == 4) {
+    if (input.toLowerCase() === 'yes' || input === 1) {
+      console.log('ChangeVid');
+      socket.emit('changeVid');
+      if(activeArtist == 'Chat Stevens'){
+        activeArtist = 'Chats Domino';
+        activeDate = '1948';
+      } else if(activeArtist == 'Chats Domino'){
+        activeArtist = 'Chat Stevens';
+        activeDate = '1974';
+      }
+      answer = 'Hey I am ' + activeArtist +'!!';
+      waitTime = 5000;
+      question = 'Would you like to hear me sing?';
+      questionNum = 0;
+    } else if (input.toLowerCase() === 'no' || input === 0) {
+
+    } else {
+    }
   } else {
-    answer = 'I have nothing more to say!'; // output response
+    answer = 'I have nothing more to say! Here is my friend Chat Benatar '; // output response
+    socket.emit('endVid');
     waitTime = 0;
     question = '';
   }
