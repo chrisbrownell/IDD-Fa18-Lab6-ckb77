@@ -32,14 +32,8 @@ io.on('connect', function(socket) {
   console.log('a new user connected');
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
-
-<<<<<<< HEAD
     socket.emit('answer', "Greetings, its me, Chats Domino!"); //We start with the introduction;
-=======
-    socket.emit('answer', "Greetings! It's me, Chats Domino"); //We start with the introduction;
->>>>>>> da8c5fe45d027ee8073c19f3c48a7a82efc138bc
     setTimeout(timedQuestion, 5000, socket, "What is your name?"); // Wait a moment and respond with a question.
-
   });
   socket.on('message', (data) => { // If we get a new message from the client we process it;
     console.log(data);
