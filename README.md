@@ -4,7 +4,7 @@
 
 ## In this Report
 
-To submit your lab, fork [this repository](https://github.com/FAR-Lab/IDD-Fa18-Lab6). You'll need to upload any code you change into your fork, as well as upload a video of a friend or classmate using your chatbot.
+I haven't been able to figure out the git push but you can see the functionality in the video below. Will push the code here as soon as I can.
 
 ## Make the ChatBot your own
 
