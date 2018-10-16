@@ -25,6 +25,16 @@ I also added 3 net new video assets for use in my chat bot:
 
 I added background video to the webpage and allow the user to toggle between *Chats Domino* and *Chat Stevens*. They can un-mute the video to listen to the music, and have a bit of banter with the chat bot. Then at the end once the user has told the bot to stop performing, the bot forwards the user on to its friend *Chat Benatar* for a short snippet of an acoustic version of "Love is a Battlefield".
 
+Chats Domino:
+![fats](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/fats.png)
+
+Chat Stevens:
+![cat](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/cat.png)
+
+Chat Benatar:
+![pat](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/pat.png)
+
+
 The only change to index.html was to include the three videos referenced above as background videos that autoplayed.
 
 ```
