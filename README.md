@@ -8,22 +8,22 @@ Update (1pm on 10/16):
 
 I was able to push from the pi to this repository. The files that I updated are:
 
-[chatServer.js](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/chatServer.js)
-[index.js](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/js/index.js)
-[style.css](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/css/style.css)
-[index.html](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/index.html)
+- [chatServer.js](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/chatServer.js)
+- [public/js/index.js](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/js/index.js)
+- [public/css/style.css](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/css/style.css)
+- [public/index.html](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/index.html)
 
 I also added 3 net new video assets for use in my chat bot:
 
-[Video of Chats Domino](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/fatstrim.mp4)
-[Video of Chat Stevens](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/cattrim.mp4)
-[Video of Chat Benatar](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/pattrim.mp4)
+- Video of Chats Domino - [public/fatstrim.mp4](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/fatstrim.mp4)
+- Video of Chat Stevens - [public/cattrim.mp4](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/cattrim.mp4)
+- Video of Chat Benatar - [public/pattrim.mp4](https://github.com/chrisbrownell/IDD-Fa18-Lab6-ckb77/blob/master/public/pattrim.mp4)
 
 ## Make the ChatBot your own
 
 **Describe what changes you made to the baseline chatbot here. Don't forget to push your modified code to this repository.**
 
-I added background video to the webpage and allow the user to toggle between "Chats Domino" and "Chat Stevens". They can un-mute the video to listen to the music, and have a bit of banter with the chat bot. Then at the end once the user has told the bot to stop performing, the bot forwards the user on to its friend "Chat Benatar".
+I added background video to the webpage and allow the user to toggle between *Chats Domino* and *Chat Stevens*. They can un-mute the video to listen to the music, and have a bit of banter with the chat bot. Then at the end once the user has told the bot to stop performing, the bot forwards the user on to its friend *Chat Benatar* for a short snippet of an acoustic version of "Love is a Battlefield".
 
 The only change to index.html was to include the three videos referenced above as background videos that autoplayed.
 
@@ -51,7 +51,7 @@ In style.css, I added styling for the three videos, including the z-index so tha
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-		z-index: -1;
+    z-index: -1;
 }
 
 #catVideo {
@@ -60,7 +60,7 @@ In style.css, I added styling for the three videos, including the z-index so tha
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-		z-index: -2;
+    z-index: -2;
 }
 
 #patVideo {
@@ -69,7 +69,7 @@ In style.css, I added styling for the three videos, including the z-index so tha
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-		z-index: -2;
+    z-index: -2;
 ```
 
 Changes to index.js include the addition of new functions that I can use to mute and unmute the videos and control the z-index of each, thereby promoting a video from "hidden" to "live".
